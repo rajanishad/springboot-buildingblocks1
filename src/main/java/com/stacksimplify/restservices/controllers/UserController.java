@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -30,6 +31,7 @@ import com.stacksimplify.restservices.services.UserService;
 //controller -
 @RestController
 @Validated
+@RequestMapping(value = "/users")
 public class UserController {
 	
 	//auto wire user service
@@ -37,7 +39,7 @@ public class UserController {
 	private UserService userService;
 	
 	//get all users method
-	@GetMapping("/users")
+	@GetMapping
 	public List<User> getAllUsers() {
 		
 		return userService.getAllUsers();
@@ -46,7 +48,7 @@ public class UserController {
 	//create user
 	//requestbody annotatn
 	//postmapping annotatn
-	@PostMapping("/users")
+	@PostMapping
 	public ResponseEntity<Void> createUser(@Valid @RequestBody User user, UriComponentsBuilder builder) {
 		
 		try {
@@ -63,7 +65,7 @@ public class UserController {
 	
 	//getuserby id
 	
-	@GetMapping("/users/{id}")
+	@GetMapping("/{id}")
 	public Optional<User> getUserById(@PathVariable("id") @Min(1) Long id ){
 		
 		try {
@@ -75,7 +77,7 @@ public class UserController {
 	}
 
 	//updateuserbyid
-	@PutMapping("/users/{id}")
+	@PutMapping("/{id}")
 	public User  updateUserById(@PathVariable("id") Long id, @RequestBody User user) {
 		
 		try {
@@ -88,13 +90,13 @@ public class UserController {
 	
 	//delete user by id
 	
-	@DeleteMapping("/users/{id}")
+	@DeleteMapping("/{id}")
 	public void deleteUserById(@PathVariable("id") Long id) {
 		userService.deleteUserById(id);
 	}
 	
 	//getuserbu username
-	@GetMapping("/users/byusername/{username}")
+	@GetMapping("/byusername/{username}")
 	public User getUserByUserName(@PathVariable("username") String username) throws UserNameNotFoundEcxeption {
 		
 		
