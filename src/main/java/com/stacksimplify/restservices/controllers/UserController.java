@@ -55,7 +55,7 @@ public class UserController {
 			
 			userService.createUser(user);
 			HttpHeaders headers=new HttpHeaders();
-			headers.setLocation(builder.path("/user/{id}").buildAndExpand(user.getId()).toUri());
+			headers.setLocation(builder.path("/user/{id}").buildAndExpand(user.getUserId()).toUri());
 			return new ResponseEntity<Void>(headers,HttpStatus.CREATED);
 		} catch (UserExistsException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
