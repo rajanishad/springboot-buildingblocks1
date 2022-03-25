@@ -45,7 +45,7 @@ public class UserHateoasController {
 		List<User> allUsers= userService.getAllUsers();
 		for (User user : allUsers) {
 			//self link
-			Long userid=user.getUserId();
+			Long userid=user.getUserid();
 			Link selfLink= WebMvcLinkBuilder.linkTo(this.getClass()).slash(userid).withSelfRel();
 			user.add(selfLink);
 			//relationshif link with get all order
@@ -70,7 +70,7 @@ public class UserHateoasController {
 		try {
 			Optional<User> userOptional= userService.getUserById(id);
 			User user=userOptional.get();
-			Long userid= user.getUserId();
+			Long userid= user.getUserid();
 			Link selfLink= WebMvcLinkBuilder.linkTo(this.getClass()).slash(userid).withSelfRel();
 			user.add(selfLink);
 			EntityModel<User> entityModel=EntityModel.of(user);
