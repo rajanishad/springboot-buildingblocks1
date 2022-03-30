@@ -47,7 +47,7 @@ public class UserController {
 	
 	//create user
 	//requestbody annotatn
-	//postmapping annotatn
+	//postmapping  annotatn
 	@PostMapping
 	public ResponseEntity<Void> createUser(@Valid @RequestBody User user, UriComponentsBuilder builder) {
 		
