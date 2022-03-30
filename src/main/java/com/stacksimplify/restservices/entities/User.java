@@ -56,6 +56,7 @@ public class User extends RepresentationModel<User>{
 	@Column(name = "SSN", length = 50, nullable = false, unique = true)
 	@JsonView(Views.Internal.class)
 
+
 //	@JsonIgnore  --static filtering json ignore
 	private String ssn;
 	
@@ -64,6 +65,9 @@ public class User extends RepresentationModel<User>{
 
 	private List<Order> orders;
 	
+	@Column(name = "ADDRESS")
+	private String address;
+	
 	
 	//no arg constructor
 	public User() {
@@ -71,7 +75,7 @@ public class User extends RepresentationModel<User>{
 	}
 	
 	//fields constructor-optional
-	public User(Long id, String username, String firstname, String lastname, String email, String role, String ssn) {
+	public User(Long id, String username, String firstname, String lastname, String email, String role, String ssn, String address) {
 		this.userid = id;
 		this.username = username;
 		this.firstname = firstname;
@@ -79,6 +83,7 @@ public class User extends RepresentationModel<User>{
 		this.email = email;
 		this.role = role;
 		this.ssn = ssn;
+		this.address=address;
 	}
 	//getters and setters
 
@@ -146,12 +151,27 @@ public class User extends RepresentationModel<User>{
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
+	
+	
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
 	//to string-optional
+
 	@Override
 	public String toString() {
-		return "User [id=" + userid + ", username=" + username + ", firstname=" + firstname + ", lastname=" + lastname
-				+ ", email=" + email + ", role=" + role + ", ssn=" + ssn + "]";
+		return "User [userid=" + userid + ", username=" + username + ", firstname=" + firstname + ", lastname="
+				+ lastname + ", email=" + email + ", role=" + role + ", ssn=" + ssn + ", orders=" + orders
+				+ ", address=" + address + "]";
 	}
+
+	
+	
 	
 }
